@@ -692,7 +692,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.9.1</div>
+    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.10.0</div>
   `;
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
   bindAliasCard(renderSettings);
@@ -740,7 +740,7 @@ const isEmptyVal = v => v === "" || v == null || (Array.isArray(v) && !v.length)
 function mergeFill(ex, o){
   const m = {...ex}; let ch = false;
   FIELDS.forEach(k => { if(k !== "genre" && isEmptyVal(ex[k]) && !isEmptyVal(o[k])){ m[k] = o[k]; ch = true; } });
-  if(!artistsOf(ex).length && artistsOf(o).length){ m.artists = artistsOf(o); ch = true; }
+  { const cur = artistsOf(ex), add = artistsOf(o).filter(n => !cur.includes(n)); if(add.length){ m.artists = cur.concat(add); ch = true; } } /* 出演者は、まだ入っていない名前だけを後ろに足す */
   if(o.artistRoles){
     const rr = {...(ex.artistRoles || {})}, names = artistsOf(m);
     Object.keys(o.artistRoles).forEach(n => { if(!rr[n] && names.includes(n)){ rr[n] = o.artistRoles[n]; ch = true; } });
