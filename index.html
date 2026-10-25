@@ -251,7 +251,7 @@ const setAliases = a => { aliases = {venue: cleanAliasMap(a && a.venue), artist:
 try { setAliases(JSON.parse(localStorage.getItem(ALIAS_LS) || "{}")); } catch(e){}
 const canon = (kind, name) => { const m = aliases[kind] || {}; let n = String(name || "").trim(), i = 0; while(Object.prototype.hasOwnProperty.call(m, n) && i++ < 20) n = m[n]; return n; };
 const aliasNames = (kind, name) => { const c = canon(kind, name); return [c].concat(Object.keys(aliases[kind] || {}).filter(k => canon(kind, k) === c)); };
-const splitNames = s => String(s || "").split(/[、,，]/).map(x => x.trim()).filter(Boolean);
+const splitNames = s => String(s || "").split(/[、,，]|\s+[\/／]\s+|／/).map(x => x.trim()).filter(Boolean);
 /* 出演者は配列(artists)だけで持つ。古いデータ(artistが文字列・配列)は、読み込むときに artists にそろえる */
 const artistsOf = l => { if(!l) return []; const src = Array.isArray(l.artists) && l.artists.length ? l.artists : Array.isArray(l.artist) ? l.artist : splitNames(l.artist); return src.map(x => String(x).trim()).filter(Boolean); };
 const artistLine = l => artistsOf(l).join("、");
@@ -697,7 +697,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.12.0</div>
+    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.12.1</div>
   `;
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
   bindAliasCard(renderSettings);
@@ -970,7 +970,7 @@ function openForm(existing){
     sst.className = "status ok"; sst.textContent = "記号→数字→英字→日本語の順に並べ替えました。";
   };
   $("#artApply").onclick = () => {
-    const sa = $("#stApply"), add = $("#artIn").value.split(/[、,，\n]/).map(x => x.trim()).filter(Boolean);
+    const sa = $("#stApply"), add = $("#artIn").value.split(/[、,，\n]|\s+[\/／]\s+|／/).map(x => x.trim()).filter(Boolean);
     if(!add.length){ sa.className = "status err"; sa.textContent = "出演者を入力してください。"; return; }
     const cur = readArtists().filter(Boolean);
     let cnt = 0;
