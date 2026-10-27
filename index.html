@@ -230,7 +230,7 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.13.3</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.13.4</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
@@ -878,7 +878,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.13.3</div>
+    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.13.4</div>
   `;
   const setLv = v => { try { localStorage.setItem("livelog_listview", v); } catch(e){} renderSettings(); };
   $("#lvThumb").onclick = () => setLv("thumb"); $("#lvOld").onclick = () => setLv("old");
@@ -1116,7 +1116,7 @@ function openForm(existing){
       <button type="button" class="btn sec" id="sortArtist">出演者を並べ替える</button>
       <div class="status" id="stSort"></div>
       <div class="lh"><label for="artIn">出演者をまとめて追加</label></div>
-      <div class="cw"><textarea id="artIn" style="min-height:72px" placeholder="名前を「、」「,」や改行で区切って入力"></textarea><button type="button" class="cx" data-clr="artIn" aria-label="クリア">×</button></div>
+      <div class="cw"><textarea id="artIn" style="min-height:72px" placeholder="名前を「、」「,」「/」や改行で区切って入力"></textarea><button type="button" class="cx" data-clr="artIn" aria-label="クリア">×</button></div>
       <button type="button" class="btn sec" id="artApply">入力欄に追加</button>
       <div class="status" id="stApply"></div>
       <div class="lh"><label>会場</label></div><div class="cw"><input id="f_venue" placeholder=" " value="${v("venue")}"><button type="button" class="cx" data-clr="f_venue" aria-label="クリア">×</button></div>
@@ -1153,7 +1153,7 @@ function openForm(existing){
     sst.className = "status ok"; sst.textContent = "記号→数字→英字→日本語の順に並べ替えました。";
   };
   $("#artApply").onclick = () => {
-    const sa = $("#stApply"), add = $("#artIn").value.split(/[、,，\n]|\s+[\/／]\s+|／/).map(x => x.trim()).filter(Boolean);
+    const sa = $("#stApply"), add = $("#artIn").value.split(/[、,，\n\/／]/).map(x => x.trim()).filter(Boolean);
     if(!add.length){ sa.className = "status err"; sa.textContent = "出演者を入力してください。"; return; }
     const cur = readArtists().filter(Boolean);
     let cnt = 0;
