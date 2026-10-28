@@ -245,7 +245,7 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.14.2</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.14.3</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
@@ -695,7 +695,7 @@ const LV_NAMES = {thumb: "サムネイルあり", grid: "サムネイルのみ",
 const lvLabel = () => LV_NAMES[listView()];
 const lvAria = () => `一覧の見た目: ${lvLabel()}(押すと切り替え)`;
 const LV_ICONS = {
-  thumb: '<rect x="3" y="3" width="18" height="12" rx="2"/><circle cx="8" cy="7.5" r="1.4"/><path d="M3 13l5-4 4 3 3-2 6 4M3 19h14M3 22h8"/>',
+  thumb: '<rect x="3" y="3" width="18" height="12" rx="2"/><path d="M3 19h14M3 22h8"/>',
   grid: '<rect x="3" y="3" width="5" height="5" rx="1"/><rect x="9.5" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="16" y="9.5" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><rect x="9.5" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="5" height="5" rx="1"/>',
   old: '<path d="M3 6h18M3 12h18M3 18h18"/>'
 };
@@ -895,7 +895,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.14.2</div>
+    <div class="hint" style="text-align:center">イベント件数: ${lives.length} ／ Ver:1.14.3</div>
   `;
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
   bindAliasCard(renderSettings);
