@@ -252,14 +252,14 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.16.1</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.16.2</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
 <nav class="tabbar"><div class="tabbar-in">
   <button data-tab="list" class="on">一覧</button>
   <button data-tab="stats">集計</button>
-  <button data-tab="settings">データ</button>
+  <button data-tab="settings">設定</button>
 </div></nav>
 
 <script>
@@ -653,7 +653,7 @@ let subEdit = false;
 function screenTitle(){
   if(sub && subKind === "bulk") return "一括編集";
   if(sub) return subKind === "detail" ? "参加イベント詳細" : subEdit ? "参加イベント編集" : "参加イベント登録";
-  return tab === "stats" ? "参加イベント集計" : tab === "settings" ? "データ管理" : "参加イベント一覧";
+  return tab === "stats" ? "参加イベント集計" : tab === "settings" ? "設定" : "参加イベント一覧";
 }
 new MutationObserver(() => {
   const a = document.getElementById("app");
@@ -1003,6 +1003,7 @@ function renderStats(){
 
 function renderSettings(){
   $("#app").innerHTML = `
+    ${aliasCardHtml()}
     <div class="card">
       <h2>バックアップ</h2>
       <div class="hint">iOSはブラウザのデータが消えることがあります。定期的に書き出して、ファイルAppやiCloud Driveに保存してください。</div>
@@ -1015,13 +1016,12 @@ function renderSettings(){
       <button class="btn sec" id="csv">CSVファイルを書き出す</button>
       <div class="status" id="dst"></div>
     </div>
-    ${aliasCardHtml()}
     <div class="card">
       <h2>データ削除</h2>
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.16.1</div>
+    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.16.2</div>
   `;
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
   bindAliasCard(renderSettings);
