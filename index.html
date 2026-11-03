@@ -275,7 +275,7 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.17.1</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.17.2</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
@@ -403,7 +403,7 @@ function genreCardHtml(){
     <h2>ジャンル設定</h2>
     <div class="hint">ジャンルをタップすると、名前・色・自動入力しない項目・開場/開演の表示名を編集できます(最大${MAXGENRE}個。「${GENRE_FIXED}」は固定で、ここには出ません)。名前を変えると、登録済みのイベントにも反映されます。イベントがあるジャンルは削除できません。</div>
     <div id="gList" data-mode="${gSort && editable >= 2 ? "sort" : ""}">${rows}</div>
-    <div class="mrow" style="margin-top:12px"><button class="btn sec${gSort && editable >= 2 ? " on" : ""}" id="gSortBtn" type="button"${editable >= 2 ? "" : " disabled"}>並び替え</button><button class="btn sec" id="gAdd" type="button"${editable >= MAXGENRE ? " disabled" : ""}>＋ ジャンルを追加(${editable}/${MAXGENRE})</button></div>
+    <div class="mrow" style="margin-top:12px"><button class="btn sec${gSort && editable >= 2 ? " on" : ""}" id="gSortBtn" type="button"${editable >= 2 ? "" : " disabled"}>並び替え</button><button class="btn sec" id="gAdd" type="button" style="white-space:nowrap"${editable >= MAXGENRE ? " disabled" : ""}>＋ 追加(${editable}/${MAXGENRE})</button></div>
     <div class="mrow" style="margin-top:8px"><button class="btn sec" id="gReset" type="button">変更を戻す</button><button class="btn" id="gSave" type="button">保存</button></div>
     <div class="status" id="gSt"></div>
   </div>`;
@@ -1189,7 +1189,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.17.1</div>
+    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.17.2</div>
   `;
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
   bindAliasCard(renderSettings);
