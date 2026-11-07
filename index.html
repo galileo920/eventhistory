@@ -57,8 +57,8 @@ main{max-width:560px;margin:0 auto;padding-block:14px 150px;padding-left:var(--g
 .bbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
 .bbar-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .bbar .btn{margin:0}
-.tabbar button{flex:1;border:0;background:none;color:var(--sub);padding:12px 4px;font-size:13px;font-weight:500;cursor:pointer;border-top:2px solid transparent}
-.tabbar button.on{color:var(--accent);border-top-color:var(--accent)}
+.tabbar button{flex:1;border:0;background:none;color:var(--sub);padding:12px 4px;font-size:14px;font-weight:500;cursor:pointer;border-top:3px solid transparent}
+.tabbar button.on{color:var(--accent);font-weight:700;border-top-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
 .fab{position:fixed;z-index:7;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.28)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .search{margin-bottom:12px}
@@ -82,7 +82,7 @@ textarea{resize:vertical;min-height:84px}
 .cw.sw{margin-bottom:12px}
 .cw>.search{margin-bottom:0}
 input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
-label{display:block;margin-top:14px;font-size:13px;color:var(--sub);font-weight:500}
+label{display:block;margin-top:14px;font-size:12px;color:var(--sub);font-weight:500}
 .sortrow{display:flex;justify-content:space-between;align-items:center;margin:-2px 0 4px}
 .sortrow .grp{display:flex;gap:8px}
 .sortrow .cl{display:flex;align-items:center;gap:8px}
@@ -151,7 +151,7 @@ button.line{width:100%;text-align:left;cursor:pointer}
 .stub.thumb .side{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:4px 4px 4px 12px}
 .stub .who{font-weight:700;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .stub .ttl{font-size:14px;color:var(--sub);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.stub.thumb .where{font-size:13px;color:var(--ink)}
+.stub.thumb .where{font-size:12px;color:var(--ink)}
 .stub.thumb .who.sm{font-size:14px;line-height:1.35}
 .stub.thumb .side .ttl{font-size:12px}
 .stub.thumb .side .where{font-size:12px;color:var(--ink)}
@@ -240,7 +240,7 @@ button.line{width:100%;text-align:left;cursor:pointer}
 .gxp{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;justify-items:center;margin:12px 0 4px}
 .gxsw{width:32px;height:32px;border-radius:50%;border:2px solid transparent;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);cursor:pointer;padding:0}
 .gxsw.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--surface) inset}
-.gxk{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:14px;margin-top:10px}
+.gxk{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12px;margin-top:10px}
 .gxk label{display:flex;align-items:center;gap:5px;margin:0}
 .gxk input[type=checkbox]{width:20px;height:20px;flex:none;margin:0;padding:0}
 .gxk label,.gxk span{white-space:nowrap}
@@ -311,7 +311,7 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.19.39</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.19.42</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
@@ -1413,7 +1413,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.19.39</div>
+    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.19.42</div>
   `;
   makeAccordion();
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
