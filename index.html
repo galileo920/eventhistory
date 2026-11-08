@@ -311,7 +311,7 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.20.1</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.20.3</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
@@ -1434,7 +1434,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.20.1</div>
+    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.20.3</div>
   `;
   makeAccordion();
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
@@ -1767,6 +1767,11 @@ function openForm(existing){
   syncGLabels();
   $("#save").onclick = async () => {
     if(getPhotos.over() > 0) return;
+    /* 「出演者をまとめて追加」に入力したまま、入力欄に追加せず保存しようとしたときの確認(標準のダイアログ) */
+    if($("#artIn") && $("#artIn").value.trim()){
+      if(!confirm("「出演者をまとめて追加」に入力した名前が、まだ出演者の入力欄に追加されていません。\n\nOK:入力欄に追加して保存\nキャンセル:保存せずに戻る")) return;
+      $("#artApply").onclick();
+    }
     FIELDS.forEach(k => { if(k !== "genre") l[k] = $("#f_" + k).value.trim(); });
     { const mv = window.__readMoreVenues ? window.__readMoreVenues().filter(v => v.venue) : []; if(mv.length) l.moreVenues = mv; else delete l.moreVenues; }
     l.tags = splitTags(l.tags);
