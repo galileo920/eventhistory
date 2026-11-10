@@ -237,6 +237,11 @@ button.line{width:100%;text-align:left;cursor:pointer}
 .gxk input[type=checkbox]{width:20px;height:20px;flex:none;margin:0;padding:0}
 .gxk label,.gxk span{white-space:nowrap}
 .gxl{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:12px;color:var(--sub)}
+.gxl.one{grid-template-columns:1fr;gap:0;margin-top:4px}
+.gxl.one label{margin-top:0}
+.gxl.one .nb{white-space:nowrap}
+.gxl.one input{width:calc(50% - 4px)}
+.gxl.one.dis{opacity:.45}
 .gxl input{display:block;width:100%;height:40px;margin-top:3px;padding:0 10px;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
 .gxn{font-size:12px;color:var(--sub);margin-top:8px}
 .gxh{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:0;font:inherit;color:var(--ink);text-align:left;cursor:pointer;min-height:36px}
@@ -314,7 +319,7 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.20.19</span></h1></div></div>
+<div class="bar"><div class="bar-in"><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.20.20</span></h1></div></div>
 <main id="app"></main>
 <button class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button>
 <div class="toast" id="toast" hidden></div>
@@ -445,7 +450,7 @@ function genreCardHtml(){
         <div class="gxk"><span>自動入力しない:</span>${ck("skipArtist", "出演者")}${ck("skipOpen", "開場")}${ck("skipStart", "開演")}</div>
         <div class="gxl"><label>開場の表示名<input data-gi="${i}" data-gk="openLabel" value="${esc(g.openLabel || "")}" placeholder="開場" maxlength="6"></label><label>開演の表示名<input data-gi="${i}" data-gk="startLabel" value="${esc(g.startLabel || "")}" placeholder="開演" maxlength="6"></label></div>
         <div class="gxk"><label><input type="checkbox" data-gi="${i}" data-gk="noGroup"${g.noGroup ? " checked" : ""}>「ツアーごと」の表示でまとめない</label></div>
-        <div class="gxl"><label>まとめたときの数え方(全○○)<input data-gi="${i}" data-gk="groupUnit" value="${esc(g.groupUnit || "")}" placeholder="公演" maxlength="4"></label></div>
+        <div class="gxl one${g.noGroup ? " dis" : ""}"><label>まとめたときの数え方<span class="nb">(全○○)</span><input data-gi="${i}" data-gk="groupUnit" value="${esc(g.groupUnit || "")}" placeholder="公演" maxlength="4"${g.noGroup ? " disabled" : ""}></label></div>
         <div class="gxn">${g.orig ? (n ? `登録 ${n}件(イベントがあるため削除できません)` : "登録なし") : "新規"}</div>
       </div>
     </div>`;
@@ -465,7 +470,7 @@ function bindGenreCard(rerender){
   const err = m => { st.className = "status err"; st.textContent = m; };
   document.querySelectorAll("#app .gname").forEach(i => i.addEventListener("input", e => { gDraft[Number(i.dataset.gi)].name = e.target.value; const t = i.closest(".gxe").querySelector(".gxt"); if(t) t.textContent = e.target.value.trim() || "(名前を入力)"; }));
   document.querySelectorAll("#app .gxh").forEach(h => h.onclick = () => { const g = gDraft[Number(h.dataset.gi)]; g.open = !g.open; h.setAttribute("aria-expanded", g.open); h.closest(".gxe").querySelector(".gxb").hidden = !g.open; });
-  document.querySelectorAll("#app [data-gk]").forEach(i => i.addEventListener("input", e => { gDraft[Number(i.dataset.gi)][i.dataset.gk] = i.type === "checkbox" ? i.checked : i.value; }));
+  document.querySelectorAll("#app [data-gk]").forEach(i => i.addEventListener("input", e => { gDraft[Number(i.dataset.gi)][i.dataset.gk] = i.type === "checkbox" ? i.checked : i.value; if(i.dataset.gk === "noGroup"){ const w = i.closest(".gxb").querySelector(".gxl.one"); if(w){ w.classList.toggle("dis", i.checked); const u = w.querySelector("input"); if(u) u.disabled = i.checked; } } }));
   document.querySelectorAll("#app .gxsw").forEach(b => b.onclick = () => {
     const i = Number(b.dataset.gi); gDraft[i].color = Number(b.dataset.gc);
     b.parentElement.querySelectorAll(".gxsw").forEach(x => { const on = x === b; x.classList.toggle("on", on); x.setAttribute("aria-pressed", on); });
@@ -1507,7 +1512,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.20.19</div>
+    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.20.20</div>
   `;
   makeAccordion();
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
@@ -1758,7 +1763,7 @@ function openForm(existing){
   const v = k => esc(l[k] ?? "");
   $("#app").innerHTML = `
     <div class="card" style="margin-top:12px">
-      <label>公演名</label><div class="cw"><textarea id="f_title" placeholder=" " style="min-height:110px">${v("title")}</textarea><button type="button" class="cx" data-clr="f_title" aria-label="クリア">×</button></div>
+      <label>イベント名</label><div class="cw"><textarea id="f_title" placeholder=" " style="min-height:110px">${v("title")}</textarea><button type="button" class="cx" data-clr="f_title" aria-label="クリア">×</button></div>
       <label>出演者</label><div id="artists"></div>
       <button type="button" class="btn sec" id="addArtist" style="margin-top:8px">＋ 出演者を追加</button>
       <div class="mrow"><button type="button" class="btn sec" id="modeSort">並び替え</button><button type="button" class="btn sec" id="modeDel">削除</button></div>
@@ -1851,7 +1856,7 @@ function openForm(existing){
     l.genre = $("#f_genre").value || GENRES[0];
     l.title = l.title.replace(/\s*\n\s*/g, " ");
     l.artists = readArtists().filter(Boolean); delete l.artist;
-    if(!l.artists.length && !l.title){ alert("公演名か出演者を入力してください"); return; }
+    if(!l.artists.length && !l.title){ alert("イベント名か出演者を入力してください"); return; }
     l.price = l.price === "" ? "" : Number(l.price);
     { const ph = getPhotos(); if(ph.length) l.photos = ph; else delete l.photos; }
     l.updatedAt = Date.now();
