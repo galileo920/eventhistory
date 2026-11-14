@@ -356,12 +356,19 @@ select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:1
 </style>
 </head>
 <body>
-<div class="bar"><div class="bar-in"><button type="button" class="hdback" id="hdBack" aria-label="戻る" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4.5L7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.22.20</span></h1><button type="button" class="hdset" id="hdSet" aria-label="設定"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div></div>
+<div class="bar"><div class="bar-in"><button type="button" class="hdback" id="hdBack" aria-label="戻る" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4.5L7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1>イベント参加記録<span style="font-size:11px;font-weight:400;color:var(--sub);margin-left:8px">Ver:1.22.24</span></h1><button type="button" class="hdset" id="hdSet" aria-label="設定"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div></div>
 <div id="scroller"><main id="app"></main></div>
 <div class="toast" id="toast" hidden></div>
+<div class="dial" id="dial" hidden>
+  <div class="dial-scrim" id="dialScrim"></div>
+  <div class="dial-items">
+    <button type="button" class="dial-btn" id="dialManual">新規登録</button>
+    <button type="button" class="dial-btn" id="dialBatch">一括登録</button>
+  </div>
+</div>
 <nav class="tabbar"><div class="tabbar-in">
   <button data-tab="list" class="on" aria-label="一覧"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="3.6" cy="5.5" r="1.7" fill="currentColor" stroke="none"/><circle cx="3.6" cy="12" r="1.7" fill="currentColor" stroke="none"/><circle cx="3.6" cy="18.5" r="1.7" fill="currentColor" stroke="none"/><path d="M8.5 5.5h13M8.5 12h13M8.5 18.5h13" fill="none" stroke="currentColor" stroke-linecap="round"/></svg></button>
-  <div class="fabcell"><button type="button" class="fab" id="fab" aria-label="イベントを追加"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button></div>
+  <div class="fabcell" id="fabCell"><button type="button" class="fab" id="fab" aria-label="イベントを追加" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button></div>
   <button data-tab="stats" aria-label="集計"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 21.5h19" fill="none" stroke="currentColor" stroke-linecap="round"/><rect x="3.2" y="12.5" width="4.6" height="7.5" rx="1" fill="currentColor" stroke="none"/><rect x="9.7" y="3" width="4.6" height="17" rx="1" fill="currentColor" stroke="none"/><rect x="16.2" y="8" width="4.6" height="12" rx="1" fill="currentColor" stroke="none"/></svg></button>
 </div></nav>
 
@@ -957,7 +964,7 @@ function setTab(t, o = {}){
   if(t === "settings" && tab !== "settings") tabBeforeSettings = tab;
   tab = t;
   document.querySelectorAll(".tabbar button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
-  $("#fab").style.display = "";
+  $("#fab").style.display = ""; closeDial();
   render();
   SC.scrollTo(0, o.top ? 0 : (scrollPos[t] || 0));
   if(o.dir) slideIn(o.dir);
@@ -989,6 +996,7 @@ function onSwipe(dx){
   if(subKind === "form"){
     if(confirm("入力中の内容は保存されません。戻りますか?")){ subBack(); slideIn("r"); }
   }
+  if(subKind === "breg"){ if(bConfirmLeave()) bLeave(); }
 }
 (() => {
   let sx = 0, sy = 0, t0 = 0, on = false;
@@ -1005,12 +1013,22 @@ function onSwipe(dx){
     if(Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8 && Date.now() - t0 < 700) onSwipe(dx);
   }, {passive: true});
 })();
-$("#fab").onclick = () => openForm();
+function closeDial(){ const d = $("#dial"); if(d) d.hidden = true; const f = $("#fab"); if(f){ f.classList.remove("open"); f.setAttribute("aria-expanded", "false"); } const tb = document.querySelector(".tabbar"); if(tb) tb.classList.remove("dialon"); }
+$("#fab").onclick = () => {
+  const d = $("#dial");
+  if(!d.hidden){ closeDial(); return; }
+  d.hidden = false; $("#fab").classList.add("open"); $("#fab").setAttribute("aria-expanded", "true"); document.querySelector(".tabbar").classList.add("dialon"); /* ダイヤルを開いている間も、下のタブバー(＋)を暗くしない */
+};
+$("#dialScrim").onclick = closeDial;
+$("#fabCell").onclick = e => { if(e.target === e.currentTarget) closeDial(); }; /* ダイヤルを開いているとき、＋の周りを押したら閉じる */
+$("#dialManual").onclick = () => { closeDial(); openForm(); };
+$("#dialBatch").onclick = () => { closeDial(); openBatch(); };
 
 let subEdit = false;
 function screenTitle(){
   if(sub && (subKind === "detail" || subKind === "sdetail")) return ""; /* イベント詳細・詳細集計は画面名を出さない */
   if(sub && subKind === "bulk") return "一括編集";
+  if(sub && subKind === "breg") return "一括登録";
   if(sub && subKind === "sdetail") return "詳細集計";
   if(sub) return subKind === "detail" ? "参加イベント詳細" : subEdit ? "参加イベント編集" : "参加イベント登録";
   return tab === "stats" ? "参加イベント集計" : tab === "settings" ? "設定" : "参加イベント一覧";
@@ -1592,7 +1610,7 @@ function renderSettings(){
       <button class="btn danger" id="wipe">全データを削除</button>
       <div class="status" id="wst"></div>
     </div>
-    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.22.20</div>
+    <div class="hint" style="text-align:center">イベント件数: ${loaded ? lives.length : "読み込み中"} ／ Ver:1.22.24</div>
   `;
   makeAccordion();
   if(dataMsg){ const d = $(dataMsg.id || "#dst"); d.className = "status " + dataMsg.cls; d.textContent = dataMsg.text; }
@@ -1945,6 +1963,151 @@ function openForm(existing){
   };
 }
 
+/* ========== 一括登録(手入力だけ。写真の読み取りはしない) ========== */
+const BM_KEY = "livelog_batch_manual_v1";
+let bItems = [], bLoaded = false;
+const bEmptyF = () => ({genre: "", title: "", artist: "", venue: "", pref: "", date: "", open: "", start: "", seatType: "", seat: "", price: "", tags: ""});
+/* 出演者の欄の区切り: 「、」「,」「，」「/」「／」と改行を、前後の空白に関係なく区切りとして扱う */
+const splitBulkNames = s => String(s || "").split(/[、,，\/／\r\n]/).map(x => x.trim()).filter(Boolean);
+/* 入力欄の高さを内容に合わせる(上限を超えたら縦にスクロール) */
+const bGrow = t => { t.style.height = "auto"; t.style.height = Math.min(t.scrollHeight + 2, 120) + "px"; };
+function bLoad(){
+  if(bLoaded) return; bLoaded = true;
+  try { const j = JSON.parse(localStorage.getItem(BM_KEY) || "[]"); if(Array.isArray(j)) bItems = j.filter(x => x && x.id && x.f).map(x => ({id: x.id, err: "", open: false, f: {...bEmptyF(), ...x.f}})); } catch(e){}
+}
+function bPersist(){ try { localStorage.setItem(BM_KEY, JSON.stringify(bItems.map(({id, f}) => ({id, f})))); } catch(e){} }
+function bSummary(it){
+  const f = it.f, m = [f.date ? fmtDate(f.date) : "", [f.venue, f.pref && `(${f.pref})`].filter(Boolean).join("")].filter(Boolean).join(" ／ ");
+  return {t: f.title || f.artist || "(イベント名なし)", m: m || "内容を入力してください"};
+}
+function bEditHtml(it){
+  const f = it.f;
+  const inp = (k, label, extra = "") => `<label for="b${it.id}-${k}">${label}</label><div class="cw"><input id="b${it.id}-${k}" data-bid="${it.id}" data-k="${k}" value="${esc(f[k])}" placeholder=" " ${extra}><button type="button" class="cx" data-clr="b${it.id}-${k}" aria-label="クリア">×</button></div>`;
+  return `<div class="bedit">
+    <label for="b${it.id}-title">イベント名</label><div class="cw"><textarea id="b${it.id}-title" data-bid="${it.id}" data-k="title" placeholder=" ">${esc(f.title)}</textarea><button type="button" class="cx" data-clr="b${it.id}-title" aria-label="クリア">×</button></div>
+    <label for="b${it.id}-artist">出演者(「、」「/」・改行区切り)</label><div class="cw"><textarea id="b${it.id}-artist" class="bart" rows="1" data-bid="${it.id}" data-k="artist" placeholder=" " autocomplete="off">${esc(f.artist)}</textarea><button type="button" class="cx" data-clr="b${it.id}-artist" aria-label="クリア">×</button></div>
+    ${inp("venue", "会場")}
+    <label for="b${it.id}-pref">会場(都道府県)</label><div class="cw"><select id="b${it.id}-pref" data-bid="${it.id}" data-k="pref"><option value="">未選択</option>${PREFS.map(p => `<option${f.pref === p ? " selected" : ""}>${p}</option>`).join("")}</select></div>
+    <div class="bgrid">
+      <div><div class="lh"><label for="b${it.id}-date">日付</label></div><input id="b${it.id}-date" type="text" data-dw readonly inputmode="none" data-bid="${it.id}" data-k="date" value="${esc(f.date)}"></div>
+      <div><div class="lh"><label for="b${it.id}-open">${esc(gCfg(f.genre).openLabel || "開場")}</label></div><input id="b${it.id}-open" type="text" data-dw="time" readonly inputmode="none" data-bid="${it.id}" data-k="open" value="${esc(f.open)}"></div>
+      <div><div class="lh"><label for="b${it.id}-start">${esc(gCfg(f.genre).startLabel || "開演")}</label></div><input id="b${it.id}-start" type="text" data-dw="time" readonly inputmode="none" data-bid="${it.id}" data-k="start" value="${esc(f.start)}"></div>
+    </div>
+    ${inp("seatType", "席種・券種")}
+    ${inp("seat", "座席・整理番号")}
+    ${inp("price", "チケット代", 'type="number" inputmode="numeric"')}
+    <label for="b${it.id}-genre">ジャンル</label><select id="b${it.id}-genre" data-bid="${it.id}" data-k="genre"><option value="">未選択</option>${GENRES.map(g => `<option${f.genre === g ? " selected" : ""}>${g}</option>`).join("")}</select>
+    ${inp("tags", "タグ(「、」区切り)", 'autocomplete="off"')}
+    ${it.err ? `<div class="bmsg">${esc(it.err)}</div>` : ""}
+    <div class="bacts"><button type="button" class="btn sec small" data-bact="del" data-bid="${it.id}" style="color:var(--danger)">削除</button></div>
+  </div>`;
+}
+function bSetNote(cls, text){ const n = $("#bNote"); if(n){ n.className = "bnote " + cls; n.textContent = text || ""; } }
+function bRefresh(){
+  const list = $("#bList"); if(!list) return;
+  if(!bItems.length) list.innerHTML = `<div class="bempty">「手入力で追加」で、1件ずつ追加します。<br>内容を入力したら、「登録」でまとめて登録します。</div>`;
+  else {
+    list.innerHTML = bItems.map(it => {
+      const s = bSummary(it);
+      return `<div class="bitem">
+        <div class="brow" role="button" tabindex="0" data-btoggle="${it.id}" aria-expanded="${it.open}">
+          <div class="bsum"><div class="t">${esc(s.t)}</div><div class="m">${esc(s.m)}</div></div>
+          <span class="bpill ok">手入力</span>
+        </div>
+        ${it.open ? bEditHtml(it) : ""}
+      </div>`;
+    }).join("");
+    list.querySelectorAll("textarea.bart").forEach(bGrow);
+  }
+  const reg = $("#bReg"); if(reg){ reg.disabled = !bItems.length; reg.textContent = bItems.length ? `登録(${bItems.length}件)` : "登録"; }
+}
+const bLeave = () => { bItems = []; bPersist(); setTab("list", {dir: "r", top: true}); };
+const bConfirmLeave = () => !bItems.length || confirm("入力中の内容はすべて破棄されます。戻りますか?");
+function openBatch(){
+  bLoad();
+  saveScroll(); sub = true; subKind = "breg"; subEdit = false;
+  SC.scrollTo(0, 0);
+  $("#fab").style.display = "none"; document.querySelector(".tabbar").hidden = true; closeDial();
+  $("#app").innerHTML = `
+    <div style="margin-top:12px">
+      <button type="button" class="btn sec" id="bAdd" style="margin-top:0">＋ 手入力で追加</button>
+      <p class="bhint">1件ずつ追加して、まとめて登録できます。イベント名か出演者のどちらかが必要です。</p>
+      <div id="bList"></div>
+      <p class="bnote" id="bNote" role="status"></p>
+    </div>
+    <div class="bbar"><div class="bbar-in"><button type="button" class="btn sec" id="bCancel">キャンセル</button><button type="button" class="btn" id="bReg" disabled>登録</button></div></div>`;
+  bRefresh();
+  const list = $("#bList");
+  $("#bAdd").onclick = () => {
+    bItems.push({id: uid(), err: "", open: true, f: bEmptyF()});
+    bSetNote("", ""); bPersist(); bRefresh();
+    const last = list.lastElementChild; if(last && last.scrollIntoView) last.scrollIntoView({block: "center", behavior: "smooth"});
+  };
+  list.addEventListener("click", e => {
+    const act = e.target.closest("[data-bact]");
+    if(act){
+      if(act.dataset.armed !== "1"){ act.dataset.armed = "1"; act.textContent = "もう一度押すと削除します"; setTimeout(() => { if(act.isConnected){ act.dataset.armed = ""; act.textContent = "削除"; } }, 4000); return; }
+      bItems = bItems.filter(i => i.id !== act.dataset.bid); bPersist(); bRefresh();
+      return;
+    }
+    const tg = e.target.closest("[data-btoggle]");
+    if(tg){ const it = bItems.find(i => i.id === tg.dataset.btoggle); if(it){ it.open = !it.open; bRefresh(); } }
+  });
+  list.addEventListener("keydown", e => { if((e.key === "Enter" || e.key === " ") && e.target.matches("[data-btoggle]")){ e.preventDefault(); e.target.click(); } });
+  const onEdit = e => {
+    const t = e.target; if(!t.dataset || !t.dataset.k) return;
+    const it = bItems.find(i => i.id === t.dataset.bid); if(!it) return;
+    it.f[t.dataset.k] = t.type === "number" ? String(t.value).replace(/[^\d]/g, "") : t.value;
+    bPersist();
+    const row = t.closest(".bitem").querySelector(".bsum"), s = bSummary(it);
+    row.querySelector(".t").textContent = s.t; row.querySelector(".m").textContent = s.m;
+  };
+  /* 登録済みの出演者名・会場名・タグから、前方一致で候補を出す */
+  const fire = (el, type) => el.dispatchEvent(new Event(type, {bubbles: true}));
+  list.addEventListener("input", e => {
+    const t = e.target, k = t.dataset && t.dataset.k;
+    if(k === "artist"){ if(/[\r\n]/.test(t.value)) t.value = t.value.replace(/[\r\n]+/g, "、"); bGrow(t); }
+    if(k !== "venue" && k !== "artist" && k !== "tags") return;
+    if(k === "tags"){
+      const v = t.value, i = Math.max(v.lastIndexOf("、"), v.lastIndexOf(","), v.lastIndexOf("，")), head = v.slice(0, i + 1);
+      showSugg(t, tagCands(v.slice(i + 1), splitTags(head)), c => { t.value = head + c.name; fire(t, "input"); });
+      return;
+    }
+    if(k === "venue"){
+      showSugg(t, regCands("venue", t.value), c => {
+        t.value = c.name; fire(t, "input");
+        const ps = document.getElementById(`b${t.dataset.bid}-pref`);
+        if(c.pref && ps){ ps.value = c.pref; fire(ps, "change"); }
+      });
+    } else {
+      const v = t.value, i = Math.max(...["、", ",", "，", "/", "／"].map(c => v.lastIndexOf(c))), head = v.slice(0, i + 1);
+      showSugg(t, regCands("artist", v.slice(i + 1), splitBulkNames(head)), c => { t.value = head + c.name; fire(t, "input"); });
+    }
+  });
+  list.addEventListener("focusout", e => { if(e.target.dataset && (e.target.dataset.k === "venue" || e.target.dataset.k === "artist" || e.target.dataset.k === "tags")) setTimeout(hideSugg, 200); });
+  list.addEventListener("input", onEdit);
+  list.addEventListener("change", onEdit);
+  $("#bReg").onclick = bRegister;
+  $("#bCancel").onclick = () => { if(bConfirmLeave()) bLeave(); };
+}
+async function bRegister(){
+  if(!bItems.length) return;
+  const btn = $("#bReg"); btn.disabled = true; bSetNote("", "登録しています…");
+  let n = 0, fail = 0;
+  for(const it of [...bItems]){
+    const f = it.f, now = Date.now(), artists = splitBulkNames(f.artist), title = String(f.title || "").replace(/\s*\n\s*/g, " ").trim();
+    if(!artists.length && !title){ fail++; it.err = "イベント名か出演者を入力してください。"; it.open = true; continue; }
+    const rec = {id: uid(), genre: GENRES.includes(f.genre) ? f.genre : GENRES[0], title, venue: String(f.venue || "").trim(), pref: f.pref || "", date: f.date || "", open: f.open || "", start: f.start || "", seatType: String(f.seatType || "").trim(), seat: String(f.seat || "").trim(), price: f.price === "" || f.price == null ? "" : Number(f.price), setlist: "", tags: splitTags(f.tags), artists, createdAt: now, updatedAt: now};
+    try { await dbPut(rec); n++; bItems = bItems.filter(x => x !== it); }
+    catch(e){ fail++; it.err = "登録できませんでした。"; it.open = true; }
+  }
+  bPersist();
+  try { await refresh(); } catch(e){}
+  if(!fail){ bItems = []; bPersist(); setTab("list", {top: true}); showToast(`${n}件を登録しました`); return; }
+  bRefresh();
+  bSetNote("err", `${n}件を登録しました。登録できなかった${fail}件は、内容を確認してください。`);
+}
+
 /* ========== 起動 ========== */
 (async () => {
   try { if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch(e){}
@@ -1961,6 +2124,51 @@ function openForm(existing){
   setTab("list");
 })();
 </script>
+<style>
+/* ---------- ＋メニュー(新規登録・一括登録)と一括登録 ---------- */
+.dial{position:fixed;inset:0;z-index:8}
+.dial-scrim{position:absolute;inset:0;background:rgba(15,17,24,.45)}
+.dial-items{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(68px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:row;align-items:center;gap:12px}
+.dial-btn{display:flex;align-items:center;gap:10px;white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;border-radius:999px;padding:12px 18px;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer}
+.dial-btn svg{width:22px;height:22px;color:var(--accent)}
+.tabbar.dialon{z-index:9}
+.fab svg{width:24px;height:24px;transition:transform .18s}
+.fab.open svg{transform:rotate(45deg)}
+.badd{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.badd .btn{margin:0}
+.badd input[type=file]{display:none}
+.bhint{font-size:12px;color:var(--sub);margin:8px 0 0}
+#bList{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.bempty{border:1px dashed var(--line);border-radius:14px;padding:26px 18px;text-align:center;color:var(--sub);font-size:14px}
+.bitem{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.brow{display:flex;gap:12px;align-items:stretch;padding:10px;cursor:pointer}
+.bthumb{flex:0 0 64px;height:64px;border-radius:8px;background:var(--bg) center/cover no-repeat;border:1px solid var(--line);display:grid;place-items:center;font-size:11px;color:var(--sub)}
+.bsum{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.bsum .t{font-weight:700;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bsum .m{font-size:13px;color:var(--sub);overflow-wrap:anywhere}
+.bpill{align-self:flex-start;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--bg);color:var(--sub);border:1px solid var(--line);white-space:nowrap}
+.bpill.run{color:var(--accent);border-color:var(--accent)}
+.bpill.ok{color:var(--ok);border-color:var(--ok)}
+.bpill.err{color:var(--danger);border-color:var(--danger)}
+.bedit{border-top:1px solid var(--line);padding:4px 12px 14px}
+.bedit label{display:block;margin-top:12px;font-size:12px;color:var(--sub);font-weight:500}
+.bedit input,.bedit select,.bedit textarea{width:100%;min-width:0;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin-top:4px}
+.bedit textarea{min-height:64px;resize:vertical}
+/* 出演者の入力欄: 長いときは右端で折り返し、4行を超えたら縦にスクロールする */
+.bedit textarea.bart{min-height:0;height:42px;max-height:120px;resize:none;overflow-y:auto;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;-webkit-overflow-scrolling:touch}
+.bgrid{display:grid;grid-template-columns:1.45fr 1fr 1fr;gap:8px}
+.bgrid>div{min-width:0}
+.bgrid input{-webkit-appearance:none;appearance:none;display:block;width:100%;max-width:100%;min-width:0;padding:9px 4px;text-align:center}
+.bgrid input::-webkit-date-and-time-value{text-align:center;min-width:0;min-height:1.4em}
+.bacts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn.small{padding:8px 12px;font-size:14px;width:auto;display:inline-block}
+.bmsg{font-size:13px;color:var(--danger);margin-top:8px;overflow-wrap:anywhere}
+.bend{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.bend .btn{margin:0}
+.bnote{font-size:14px;margin:10px 0 0;min-height:1.4em;color:var(--sub)}
+.bnote.err{color:var(--danger)}.bnote.ok{color:var(--ok)}
+.bgrid input[data-dw]{padding:9px 4px;text-align:center}
+</style>
 <style>
 /* ---------- 日付ホイール(年・月・日) ---------- */
 input[data-dw]{-webkit-appearance:none;appearance:none;height:46px;display:block;max-width:100%;cursor:pointer;caret-color:transparent;text-overflow:ellipsis}
