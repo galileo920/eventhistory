@@ -430,6 +430,8 @@ body.tabs-top .tabbar .tline{top:auto;bottom:0}
 body.tabs-top .tabbar .fabcell{border-top:0;border-bottom:3px solid transparent}
 body.tabs-top .dial-items{bottom:auto;top:var(--dial-top,120px)}
 /* タブを上にしたときは、広告(Workerが差し込む#admax-header-slot)を画面の下へ移す。下の固定バー・トーストは広告の上に出す(--adh=広告の高さ) */
+/* 広告が空(ブロック・未配信)のとき、文字の行ぶんの高さが残って隙間にならないよう、枠を縦並びの箱にして中身が空なら高さ0にする */
+#admax-header-slot{display:flex!important;flex-direction:column;align-items:flex-start}
 body.tabs-top #admax-header-slot{order:5;padding-bottom:env(safe-area-inset-bottom,0px)}
 body.tabs-top.has-ad .bbar{bottom:var(--adh,0px);padding-bottom:10px}
 body.tabs-top.has-ad .toast{bottom:calc(82px + var(--adh,0px))}
