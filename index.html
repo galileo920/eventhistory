@@ -429,6 +429,10 @@ body.tabs-top .tabbar button[data-tab]::after{top:0;bottom:-3px}
 body.tabs-top .tabbar .tline{top:auto;bottom:0}
 body.tabs-top .tabbar .fabcell{border-top:0;border-bottom:3px solid transparent}
 body.tabs-top .dial-items{bottom:auto;top:var(--dial-top,120px)}
+/* タブを上にしたときは、広告(Workerが差し込む#admax-header-slot)を画面の下へ移す。下の固定バー・トーストは広告の上に出す(--adh=広告の高さ) */
+body.tabs-top #admax-header-slot{order:5;padding-bottom:env(safe-area-inset-bottom,0px)}
+body.tabs-top.has-ad .bbar{bottom:var(--adh,0px);padding-bottom:10px}
+body.tabs-top.has-ad .toast{bottom:calc(82px + var(--adh,0px))}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit}
 .card select{height:46px;margin-top:4px;padding:0 12px}
@@ -504,8 +508,11 @@ const SC = document.getElementById("scroller"); /* スクロールするのは�
 /* 表示設定: タブの表示位置(上/下)。この端末のブラウザに保存。初期値は下 */
 const TABPOS_LS = "livelog_tabpos";
 const tabPos = () => { try { return localStorage.getItem(TABPOS_LS) === "top" ? "top" : "bottom"; } catch(e){ return "bottom"; } };
-const applyTabPos = () => document.body.classList.toggle("tabs-top", tabPos() === "top");
+const applyTabPos = () => { document.body.classList.toggle("tabs-top", tabPos() === "top"); try { updAdh(); } catch(_){} };
+/* 広告の高さを測って、下に移したときの固定バー・トーストの位置に使う */
+function updAdh(){ const s = document.getElementById("admax-header-slot"); document.body.classList.toggle("has-ad", !!s); document.documentElement.style.setProperty("--adh", (s && document.body.classList.contains("tabs-top") ? s.offsetHeight : 0) + "px"); }
 applyTabPos();
+(function(){ const s = document.getElementById("admax-header-slot"); if(s && window.ResizeObserver) new ResizeObserver(() => { try { updAdh(); } catch(_){} }).observe(s); })();
 const GH = {busy: false, onRender: null}; /* スワイプ中に見せる隣の画面の下準備(busyの間は、描画しても下準備をやり直さない) */
 /* 画面の上(ヘッダーの空いている所・上の余白)をタップしたら、本文を一番上までスクロールする。戻る・設定ボタンは従来どおり */
 (function(){
